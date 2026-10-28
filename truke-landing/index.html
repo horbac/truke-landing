@@ -29,7 +29,15 @@ html{scroll-behavior:smooth}
 .nav-in img{transition:height .2s}
 .nav.scrolled .nav-in img{height:38px!important}
 [id]{scroll-margin-top:84px}
-@media(max-width:760px){.nav-links .nl{display:none}.nav-in{padding:10px 16px!important}.nav-in img{height:38px!important}}
+.burger{display:none;width:44px;height:44px;border:0;border-radius:999px;background:#E6F0E2;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:0}
+.burger span{display:block;width:20px;height:2px;border-radius:2px;background:#11291D;transition:transform .2s,opacity .2s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-menu{max-width:1200px;margin:0 auto;padding:4px 16px 16px;display:flex;flex-direction:column;box-sizing:border-box}
+.nav-menu a{color:#11291D;text-decoration:none;font-weight:700;font-size:18px;padding:14px 8px;border-top:1px solid rgba(17,41,29,.08)}
+@media(min-width:761px){.nav-menu{display:none!important}}
+@media(max-width:760px){.nav-links .nl{display:none}.nav-links{gap:10px!important}.burger{display:flex}.nav-in{padding:10px 16px!important}.nav-in img{height:38px!important}.nav{background:rgba(245,248,241,.97)}}
 body{margin:0;font-family:Manrope,Arial,Helvetica,sans-serif;background:#F5F8F1;color:#11291D}
 img{max-width:100%}
 a{color:#177C45}a:hover{color:#11291D}
@@ -59,9 +67,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <a class="nl" href="#comunidad" style="color:#11291D;text-decoration:none;">Comunidad</a>
 <a class="nl" href="#preguntas" style="color:#11291D;text-decoration:none;">Preguntas</a>
 <a class="nl" href="#contacto" style="color:#11291D;text-decoration:none;">Contacto</a>
+<button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
 <a href="https://app.truke.cl" style="background:#177C45;color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;white-space:nowrap;">Abrir la app</a>
 </div>
 </div>
+<nav id="nav-menu" class="nav-menu" aria-label="Secciones" hidden>
+<a href="#como">Cómo funciona</a>
+<a href="#instalar">Instalar</a>
+<a href="#comunidad">Comunidad</a>
+<a href="#preguntas">Preguntas</a>
+<a href="#contacto">Contacto</a>
+</nav>
 </header>
 
 <!-- HERO -->
@@ -358,6 +374,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   });
 })();
 (function(){var n=document.getElementById('top-nav');if(!n)return;function f(){n.classList.toggle('scrolled',window.scrollY>8)}f();window.addEventListener('scroll',f,{passive:true})})();
+(function(){var b=document.getElementById('burger'),m=document.getElementById('nav-menu');if(!b||!m)return;function s(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú')}b.addEventListener('click',function(){s(m.hidden)});m.addEventListener('click',function(e){if(e.target.tagName==='A')s(false)});window.addEventListener('resize',function(){if(window.innerWidth>760)s(false)})})();
 </script>
 </body>
 </html>
