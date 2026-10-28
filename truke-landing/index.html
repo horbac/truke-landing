@@ -24,6 +24,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,248,241,.88);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);transition:box-shadow .2s,background .2s}
+.nav.scrolled{background:rgba(245,248,241,.96);box-shadow:0 1px 0 rgba(17,41,29,.08),0 6px 20px rgba(17,41,29,.06)}
+.nav-in img{transition:height .2s}
+.nav.scrolled .nav-in img{height:38px!important}
+[id]{scroll-margin-top:84px}
+@media(max-width:760px){.nav-links .nl{display:none}.nav-in{padding:10px 16px!important}.nav-in img{height:38px!important}}
 body{margin:0;font-family:Manrope,Arial,Helvetica,sans-serif;background:#F5F8F1;color:#11291D}
 img{max-width:100%}
 a{color:#177C45}a:hover{color:#11291D}
@@ -42,19 +48,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <div style="width:100%;background:#F5F8F1;color:#11291D;font-family:Manrope,Arial,Helvetica,sans-serif;">
 
 <!-- NAV -->
-<div style="max-width:1200px;margin:0 auto;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;box-sizing:border-box;">
+<header id="top-nav" class="nav">
+<div class="nav-in" style="max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-sizing:border-box;">
 <a href="#inicio" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#11291D;">
 <img src="assets/truke-logo-horizontal.svg" alt="Truke" style="height:46px;width:auto;display:block;">
 </a>
-<div style="display:flex;flex-wrap:wrap;align-items:center;gap:24px;font-size:15px;font-weight:600;">
-<a href="#como" style="color:#11291D;text-decoration:none;">Cómo funciona</a>
-<a href="#instalar" style="color:#11291D;text-decoration:none;">Instalar</a>
-<a href="#comunidad" style="color:#11291D;text-decoration:none;">Comunidad</a>
-<a href="#preguntas" style="color:#11291D;text-decoration:none;">Preguntas</a>
-<a href="#contacto" style="color:#11291D;text-decoration:none;">Contacto</a>
-<a href="https://app.truke.cl" style="background:#177C45;color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;">Abrir la app</a>
+<div class="nav-links" style="display:flex;align-items:center;gap:24px;font-size:15px;font-weight:600;">
+<a class="nl" href="#como" style="color:#11291D;text-decoration:none;">Cómo funciona</a>
+<a class="nl" href="#instalar" style="color:#11291D;text-decoration:none;">Instalar</a>
+<a class="nl" href="#comunidad" style="color:#11291D;text-decoration:none;">Comunidad</a>
+<a class="nl" href="#preguntas" style="color:#11291D;text-decoration:none;">Preguntas</a>
+<a class="nl" href="#contacto" style="color:#11291D;text-decoration:none;">Contacto</a>
+<a href="https://app.truke.cl" style="background:#177C45;color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;white-space:nowrap;">Abrir la app</a>
 </div>
 </div>
+</header>
 
 <!-- HERO -->
 <div id="inicio" style="max-width:1200px;margin:0 auto;padding:40px 24px 72px;display:flex;flex-wrap:wrap;align-items:center;gap:48px;box-sizing:border-box;">
@@ -349,6 +357,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     .finally(function(){busy=false;btn.disabled=false;btn.style.opacity='';btn.textContent='Enviar mensaje'});
   });
 })();
+(function(){var n=document.getElementById('top-nav');if(!n)return;function f(){n.classList.toggle('scrolled',window.scrollY>8)}f();window.addEventListener('scroll',f,{passive:true})})();
 </script>
 </body>
 </html>
